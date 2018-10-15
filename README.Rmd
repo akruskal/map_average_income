@@ -265,8 +265,8 @@ Looking at the _Metadata_2016_PEP_DataPack.xlsx_ file we can see that selected m
 1. Load these two files. [1 mark]
 
 ```{r load-income-data}
-AUST_medians <- read.csv(...)
-CED_medians <- read.csv(...)
+AUST_medians <- read.csv("2016 Census PEP Australia for AUST/2016Census_P02_AUS.csv")
+CED_medians <- read.csv("2016 Census PEP Commonwealth Electoral Divisions for AUST/2016Census_P02_AUS_CED.csv")
 ```
 
 2. Extend the `CED_medians` data by adding a column with the difference of the median family income
