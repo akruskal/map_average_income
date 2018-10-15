@@ -273,8 +273,8 @@ CED_medians <- read.csv("2016 Census PEP Commonwealth Electoral Divisions for AU
 from the national median family income: [1 mark]
 
 ```{r extend-income-data}
-Aus_median_weekly_income <-  AUST_medians$Med_tot_psnl_incom_weekly
-CED_medians$Med_tot_family_inc_weekly_diff <- Aus_median_weekly_income - CED_medians$Med_tot_psnl_incom_weekly
+Aus_median_weekly_income <-  AUST_medians$Med_tot_family_inc_weekly
+CED_medians$Med_tot_family_inc_weekly_diff <- CED_medians$Med_tot_family_inc_weekly - Aus_median_weekly_income
 ```
 
 To choose an appropriate scale for our spectrum, let's look at this data
@@ -291,7 +291,7 @@ use the range `-500` to `500`.
 3. Define the colouring scale bounds [1 mark]
 
 ```{r range-bounds}
-MIN_DIFF = ...
+MIN_DIFF = -2000
 MAX_DIFF = ...
 ```
 
