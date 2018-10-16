@@ -292,13 +292,13 @@ use the range `-500` to `500`.
 
 ```{r range-bounds}
 MIN_DIFF = -2000
-MAX_DIFF = ...
+MAX_DIFF = 1500
 ```
 
 4. Join the `CED_medians` data to the `Sydney_polys` polygons data frame (as in the population density example). [1 mark]
 
 ```{r join-median-data}
-Sydney_polys@data <- left_join(...)
+Sydney_polys@data <- left_join(Sydney_polys@data, CED_medians)
 ```
 
 5. Define the colour pallete. (You'll want three colours.) [1 mark]
