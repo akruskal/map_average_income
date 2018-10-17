@@ -304,7 +304,7 @@ Sydney_polys@data <- left_join(Sydney_polys@data, CED_medians)
 5. Define the colour pallete. (You'll want three colours.) [1 mark]
 
 ```{r colour-pallet-function}
-pallet_fn <- colorNumeric(..., c(MIN_DIFF, MAX_DIFF))
+pallet_fn <- colorNumeric(c("blue", "green", "red"), c(MIN_DIFF, MAX_DIFF))
 ```
 
 6. Draw the map with appropriately coloured polygons and an appropriately titled legend.
@@ -312,9 +312,15 @@ pallet_fn <- colorNumeric(..., c(MIN_DIFF, MAX_DIFF))
 
 ```{r median-income-map}
 m <- leaflet() %>%
-  addTiles(..) %>%
-  addPolygons(...) %>%
-  addLegend(...)
+  addTiles() %>%
+  addPolygons(data=Sydney_polys,
+              stroke=FALSE,
+              color=pallet_fn(Sydney_polys$Med_tot_family_inc_weekly_diff),
+              fillOpacity=0.5) %>%
+  addLegend("bottomleft", pal = pallet_fn, values = seq(-2000, 1500, 500),
+    title = "Income Difference compared to National Median (2016)",
+    opacity = 1,labFormat = labelFormat(prefix = "$")
+    )
 m
 ```
 
@@ -323,11 +329,25 @@ m
 
 ```{r snazzy-median-income-map}
 m <- leaflet() %>%
-  addProviderTiles(..) %>%
-  addPolygons(...) %>%
-  addProviderTiles(..) %>%
-  addLegend(...)
+  addMapPane("background_map", zIndex = 410) %>%  # Level 1: bottom
+  addMapPane("polygons", zIndex = 420) %>%        # Level 2: middle
+  addMapPane("labels", zIndex = 430) %>%          # Level 3: top
+  addProviderTiles(providers$Stamen.TonerLite,
+                   options = pathOptions(pane = "background_map")) %>%
+  addPolygons(data=Sydney_polys,
+              stroke=FALSE,
+              color=pallet_fn(Sydney_polys$Med_tot_family_inc_weekly_diff),
+              fillOpacity=0.5,
+              options = pathOptions(pane = "polygons")) %>%
+  addProviderTiles(providers$Stamen.TonerLabels,
+                   options = pathOptions(pane = "labels")) %>%
+  addLegend("bottomleft", pal = pallet_fn, values = seq(-2000, 1500, 500),
+    title = "Income Difference compared to National Median (2016)",
+    opacity = 1
+  )
 m
+
+
 ```
 
 And there you have it.
