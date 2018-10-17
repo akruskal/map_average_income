@@ -291,8 +291,10 @@ use the range `-500` to `500`.
 3. Define the colouring scale bounds [1 mark]
 
 ```{r range-bounds}
+# using ranges that are even so that colour saturation visually describes
+# how far from the median the CED district is evenly 
 MIN_DIFF = -2000
-MAX_DIFF = 1500
+MAX_DIFF = 2000
 ```
 
 4. Join the `CED_medians` data to the `Sydney_polys` polygons data frame (as in the population density example). [1 mark]
