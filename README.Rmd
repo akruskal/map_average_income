@@ -353,3 +353,16 @@ m
 ```
 
 And there you have it.
+     
+# Marks
+
+| Question  | Description      | Mark | Comments                   |
+|:----------|:-----------------|:-----|----------------------------|
+| 1         | Load             | 1    |
+| 2         | Extend dataframe | 1    |
+| 3         | Bounds           | 1    |
+| 4         | Join             | 1    |
+| 5         | Palette          | 1    |
+| 6         | Map/4            | 4    |
+| 7         | Labels on top    | 1    |
+| Total     |                  | 10   |
